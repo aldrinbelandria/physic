@@ -60,8 +60,11 @@ def run_pygame(space, bodys, radio, frames):
 			screen.blit(pix, pos)
 		
 		pygame.display.flip()
-		for x in range(4):
-			space.step(1.0/256.)
+
+		
+
+		for x in range(8):
+			space.step(1.0/1024.)
 
 	pygame.quit()
 
@@ -87,10 +90,10 @@ def main():
 	pygame.init()
 	space = create_space()
 	add_static_lines(space)
-	image = load_image("Idle.png")
-	bodys, radio = create_bodies_from_image(space, image, 1)
+	image = load_image("img.png")
+	bodys, radio = create_bodies_from_image(space, image, 2)
 	
-	DURATION = 2  # seconds
+	DURATION = 3  # seconds
 	FPS = 60
 	FRAMES = DURATION * FPS
 	
