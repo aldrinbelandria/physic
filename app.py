@@ -30,7 +30,7 @@ def create_bodies_from_image(space, image, radio=4):
 	for x in range(count_x):
 		for y in range(count_y):
 			if image.get_at((x, y)).a == 0: continue
-			b = pymunk.Body(1, 1)
+			b = pymunk.Body(4, 1)
 			b.position = Vec2d(x*radio*2 - ((count_x * (radio*2)) / 2), y*radio*2 - 200)
 			b.color = image.get_at((x, y))
 			p = pymunk.Poly.create_box(b, (radio*2, radio*2))
@@ -46,7 +46,9 @@ def run_pygame(space, bodys, radio, frames):
 	pygame.init()
 	screen = pygame.display.set_mode((600, 400))
 
-	for _ in range(frames):
+	data = pymunk.batch.Buffer()
+
+	for _ in range(1):
 		screen.fill((255, 255, 255))
 
 		for body in bodys:
@@ -61,7 +63,9 @@ def run_pygame(space, bodys, radio, frames):
 		
 		pygame.display.flip()
 
-		
+		pymunk.batch.get_space_bodies(space, pymunk.batch.BodyFields.POSITION, data)
+		positions = list(memoryview(data.float_buf()).cast('d'))
+		print(position, len(positions))
 
 		for x in range(8):
 			space.step(1.0/1024.)
