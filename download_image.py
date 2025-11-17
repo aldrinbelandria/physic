@@ -11,4 +11,4 @@ def download_sample_image(width=32, height=32, filename="img.png"):
         print("Error al descargar la imagen:", response.status_code)
 
 if __name__ == "__main__":
-    download_sample_image(2, 2)
+    download_sample_image(24, 24)
